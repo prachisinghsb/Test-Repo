@@ -1,33 +1,43 @@
 import {useForm} from "react-hook-form";
 
 
-export default  function FormPage(){
 
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
+export default function Forms(){
 
-    return (
+    const {register , handleSubmit , formState: {errors}} = useForm()
+    console.log("errors :" , errors)
 
-        <div className="border border-black flex flex-col m-auto h-200">
+    return(
+        <>
+           <h1 className="text-center h-20 text-3xl">User Form</h1>
 
-            <form onSubmit={handleSubmit(onSubmit)}>
+                <form onSubmit={handleSubmit((data) => {
+                    console.log(data)
+                })} className=" w-1/3 p-5 border border-black flex flex-col m-auto ">
 
-                <div>
-                    <label>Enter Your First Name : </label>
-                    <input {...register("firstname")} className="border border-blue-600     M-10" />
-                    {errors.firstname && <span className="text-red-500">Firstname field is required</span>}
-                </div>
-
-                <div>
-                    <label>Enter Your Last Name : </label>
-                    <input {...register("lastname", { required: true })} className="border border-blue-600" />
-                    {errors.lastname && <span className="text-red-500">Lastname field is required</span>}
-                </div>
-
-                <div>
-                    <input type="submit" className="border border-blue-600" />
-                </div>
-            </form>
-        </div>
-    );
+                    <div className="p-2 m-auto">
+                        <label>Name : </label>
+                        <input {...register("name" , {required : "name is required" , minLength: { value :4 , message: 'minimum length is 4'}})}
+                               placeholder="enter your full name"
+                               className="border border-black p-1 m-3"
+                        />
+                        <p className="text-red-700">{errors.name?.message}</p>
+                    </div>
+                    <div className="p-2 m-auto">
+                        <label>Email : </label>
+                        <input {...register("email" , {required : "email is required"  })}
+                               type="email"
+                               placeholder="enter your email"
+                               className="border border-black p-1 m-3"
+                        />
+                        <p className="text-red-700">{errors.email?.message}</p>
+                    </div>
+                    <div className="p-2 m-auto">
+                        <input type="submit"
+                               className="border border-black p-2 "
+                        />
+                    </div>
+                </form>
+        </>
+    )
 }
