@@ -25,7 +25,7 @@ export default function Forms(){
                     </div>
                     <div className="p-2 m-auto">
                         <label>Email : </label>
-                        <input {...register("email" , {required : "email is required"  })}
+                        <input {...register("email" , {required : "age is required"  })}
                                type="email"
                                placeholder="enter your email"
                                className="border border-black p-1 m-3"

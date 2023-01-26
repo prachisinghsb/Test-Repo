@@ -8,8 +8,8 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
   return (
     <>
-      <div className='text-blue-300'>
-        <h1>Home Page</h1>
+      <div className='text-blue-800'>
+        <h1>Hello NextJs</h1>
       </div>
     </>
   )
