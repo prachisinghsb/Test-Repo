@@ -2,6 +2,7 @@ import {QueryClient, useMutation ,QueryClientProvider } from "@tanstack/react-qu
 import axios from "axios";
 
 
+
 const queryClient = new QueryClient()
 export default function App() {
     return (
@@ -10,6 +11,7 @@ export default function App() {
         </QueryClientProvider>
     )
 }
+
 
 function Todos() {
 
@@ -20,7 +22,6 @@ function Todos() {
         },
     })
 
-    console.log("mutation:",mutation?.variables)
 
     return (
         <div>
@@ -48,84 +49,8 @@ function Todos() {
 
             <div>
                 <h1>Todo List</h1>
-
-
             </div>
         </div>
 
     )
 }
-
-
-
-
-
-
-
-
-// import {QueryClient, QueryClientProvider, useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
-// import axios from "axios";
-//
-//
-//
-// const queryClient = new QueryClient()
-// export default function App() {
-//     return (
-//         <QueryClientProvider client={queryClient}>
-//             <Todos />
-//         </QueryClientProvider>
-//     )
-// }
-//
-// function Todos(){
-//
-//     const queryClient = useQueryClient()
-//     const query = useQuery({
-//         queryKey: ["todos"],
-//         queryFn: () => {
-//             axios.get("http://localhost:8080/todo").then((res) => res.data)
-//         }
-//     })
-//
-//     const mutation = useMutation({
-//         mutationFn: () =>{
-//             queryFn: () => {
-//                 axios.post("http://localhost:8080/todo")
-//             }
-//         },
-//         onSuccess: () => {
-//             queryClient.invalidateQueries({ queryKey: ['todos'] })
-//         },
-//     })
-//
-//     return (
-//         <div>
-//             <ul>
-//                 {query.data?.map((todo) => (
-//                     <li key={todo.id}>{todo.title}</li>
-//                 ))}
-//             </ul>
-//
-//             <button
-//                 onClick={() => {
-//                     mutation.mutate({
-//                         id: Date.now(),
-//                         title: 'Do Laundry',
-//                     })
-//                 }}
-//             >
-//                 Add Todo
-//             </button>
-//         </div>
-//     )
-//
-// }
-//
-
-
-
-
-
-
-
-
